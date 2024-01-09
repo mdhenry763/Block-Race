@@ -9,4 +9,9 @@ public class TestJoinServer : MonoBehaviour
     {
         NetworkManager.Singleton.StartClient();
     }
+
+    public void HostServer()
+    {
+        NetworkManager.Singleton.StartHost();
+    }
 }

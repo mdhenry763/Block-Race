@@ -7,11 +7,22 @@ using static Controls;
 public class InputReader : ScriptableObject, IPlayerActions
 {
     public event Action<bool> JumpEvent;
+    public event Action<Vector3> MoveEvent;
 
     private Controls controls;
 
     private void OnEnable()
     {
+        if(UnityEngine.InputSystem.Gyroscope.current != null)
+        {
+            InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+        }
+        if(AttitudeSensor.current != null)
+        {
+            InputSystem.EnableDevice(AttitudeSensor.current);
+        }
+        
+
         if(controls == null)
         {
             controls = new Controls();
@@ -28,18 +39,32 @@ public class InputReader : ScriptableObject, IPlayerActions
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if(context.performed)
+        {
+            JumpEvent?.Invoke(true);
+        }
+        else if(context.canceled)
+        {
+            JumpEvent?.Invoke(false);
+        }
+        
     }
 
+    //Steering with the gyroscope / accelerometer
     public void OnSteering(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.performed)
+        {
+            Debug.Log("Moving");
+        }
+        MoveEvent?.Invoke(context.ReadValue<Vector3>());    
     }
 
     public void OnSteeringKeyboard(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        //MoveEvent?.Invoke(context.ReadValue<Vector2>());
+        Vector2 input = context.ReadValue<Vector2>();
+        Vector3 moveInput = new Vector3(input.x, 0, 0);
+        MoveEvent?.Invoke(moveInput);
     }
- 
-    
 }

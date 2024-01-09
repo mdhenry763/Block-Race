@@ -59,7 +59,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7e680c1a-aa78-4f0b-b908-52cb332dcaec"",
-                    ""path"": ""<Gyroscope>/angularVelocity"",
+                    ""path"": ""<Accelerometer>/acceleration"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
