@@ -185,8 +185,10 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e4e71daf508fac429d5832f1403ff42, type: 2}
   playerBody: {fileID: 8264907072501543177}
   rb: {fileID: 6269792250191910605}
-  horizontalSpeed: 1
+  horizontalSpeed: 10
   forwardSpeed: 5
+  jumpForce: 5
+  groundCheckDistance: 1
 --- !u!54 &6269792250191910605
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -211,8 +213,8 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
+  m_Interpolate: 1
+  m_Constraints: 64
   m_CollisionDetection: 0
 --- !u!65 &3814877229581844008
 BoxCollider:

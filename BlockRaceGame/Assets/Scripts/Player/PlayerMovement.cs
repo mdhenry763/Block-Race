@@ -14,6 +14,9 @@ public class PlayerMovement : NetworkBehaviour
     [Header("Settings: ")]
     [SerializeField] private float horizontalSpeed = 5f;
     [SerializeField] private float forwardSpeed = 5f;
+    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float groundCheckDistance = 0.5f;
+
 
     //Local
     private Vector3 previousMovement;
@@ -40,7 +43,7 @@ public class PlayerMovement : NetworkBehaviour
 
         //Movement
         float xMovement = previousMovement.x * horizontalSpeed;
-        rb.velocity = playerBody.right * xMovement;
+        rb.velocity = Vector3.right * xMovement;
     }
 
     private void HandleMovement(Vector3 movementInput)
@@ -48,9 +51,19 @@ public class PlayerMovement : NetworkBehaviour
         previousMovement = movementInput;
     }
 
-    private void HandleJump(bool obj)
+    private void HandleJump(bool isJumping)
     {
+        if(isJumping && IsGrounded())
+        {
+            //Perform only when player is touching the ground
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            
+        }
+    }
 
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, groundCheckDistance);
     }
 
 
