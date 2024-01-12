@@ -41,9 +41,11 @@ public class PlayerMovement : NetworkBehaviour
     {
         if(!IsOwner) return;
 
+        rb.velocity = Vector3.forward * forwardSpeed;
+
         //Movement
         float xMovement = previousMovement.x * horizontalSpeed;
-        rb.velocity = Vector3.right * xMovement;
+        rb.velocity += Vector3.right * xMovement;
     }
 
     private void HandleMovement(Vector3 movementInput)

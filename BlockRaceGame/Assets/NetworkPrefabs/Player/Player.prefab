@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 140437532
+  GlobalObjectIdHash: 3871918452
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -260,7 +260,7 @@ MonoBehaviour:
   playerBody: {fileID: 8264907072501543177}
   rb: {fileID: 6269792250191910605}
   horizontalSpeed: 10
-  forwardSpeed: 5
+  forwardSpeed: 15
   jumpForce: 150
   groundCheckDistance: 1
 --- !u!54 &6269792250191910605
