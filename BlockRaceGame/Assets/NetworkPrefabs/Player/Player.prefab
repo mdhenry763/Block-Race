@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128837726379817390}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20106587, y: -1e-45, z: -0, w: 0.9795777}
+  m_LocalRotation: {x: 0.20106587, y: -0, z: -0, w: 0.9795777}
   m_LocalPosition: {x: 0, y: 3, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 6269792250191910605}
   - component: {fileID: 3814877229581844008}
   - component: {fileID: 7563503116143090029}
+  - component: {fileID: 8480390139777637201}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -236,7 +237,7 @@ MonoBehaviour:
   SyncScaleY: 0
   SyncScaleZ: 0
   PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
+  RotAngleThreshold: 0.00001
   ScaleThreshold: 0.01
   UseQuaternionSynchronization: 0
   UseQuaternionCompression: 0
@@ -259,6 +260,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8e4e71daf508fac429d5832f1403ff42, type: 2}
   playerBody: {fileID: 8264907072501543177}
   rb: {fileID: 6269792250191910605}
+  animator: {fileID: 8480390139777637201}
   horizontalSpeed: 10
   forwardSpeed: 15
   jumpForce: 150
@@ -325,6 +327,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followCam: {fileID: 4617887671222373691}
   camPriority: 15
+--- !u!95 &8480390139777637201
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157486422245788888}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2574b02035b5d434db8039f47aaecb7a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5456222822059303454
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 1
+  m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 3, z: -7}
   m_XDamping: 1
   m_YDamping: 1

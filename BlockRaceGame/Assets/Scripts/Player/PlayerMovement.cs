@@ -7,9 +7,10 @@ using UnityEngine;
 public class PlayerMovement : NetworkBehaviour
 {
     [Header("References: ")]
-    [SerializeField] InputReader inputReader;
-    [SerializeField] Transform playerBody;
-    [SerializeField] Rigidbody rb;
+    [SerializeField] private InputReader inputReader;
+    [SerializeField] private Transform playerBody;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Animator animator;
 
     [Header("Settings: ")]
     [SerializeField] private float horizontalSpeed = 5f;
@@ -41,11 +42,9 @@ public class PlayerMovement : NetworkBehaviour
     {
         if(!IsOwner) return;
 
-        rb.velocity = Vector3.forward * forwardSpeed;
+        Vector3 movement = Vector3.forward * forwardSpeed + Vector3.right * (previousMovement.x * horizontalSpeed);
+        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
 
-        //Movement
-        float xMovement = previousMovement.x * horizontalSpeed;
-        rb.velocity += Vector3.right * xMovement;
     }
 
     private void HandleMovement(Vector3 movementInput)
@@ -59,6 +58,7 @@ public class PlayerMovement : NetworkBehaviour
         {
             //Perform only when player is touching the ground
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            //animator.SetTrigger("OnJump");
             
         }
     }
