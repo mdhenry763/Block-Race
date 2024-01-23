@@ -58,7 +58,7 @@ public class PlayerMovement : NetworkBehaviour
         {
             //Perform only when player is touching the ground
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            //animator.SetTrigger("OnJump");
+            animator.SetTrigger("OnJump");
             
         }
     }
