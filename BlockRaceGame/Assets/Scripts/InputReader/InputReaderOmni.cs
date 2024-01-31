@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 public class InputReaderOmni : ScriptableObject
 {
     public event Action<Vector2> OnMoveEvent;
+    public event Action OnJumpEvent;
+    public event Action<bool> OnBoostEvent;
 
     private DefaultActions playerActions; 
 
@@ -18,23 +20,26 @@ public class InputReaderOmni : ScriptableObject
             playerActions = new DefaultActions();
         }
 
+        playerActions.Player.Jump.performed += HandleJump;
+        playerActions.Player.Boost.performed += HandleBoost;
+        playerActions.Player.Boost.canceled += HandleBoost;
+
         playerActions.Enable();
-
-        playerActions.Player.Move.performed += OnMove;
     }
 
-    public void OnFire(InputAction.CallbackContext context)
+    private void HandleBoost(InputAction.CallbackContext obj)
     {
-        
+        OnBoostEvent?.Invoke(obj.ReadValue<bool>());
     }
 
-    public void OnLook(InputAction.CallbackContext context)
+    private void HandleJump(InputAction.CallbackContext obj)
     {
-        
+        OnJumpEvent?.Invoke();
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public Vector2 GetPlayerMovement()
     {
-        OnMoveEvent?.Invoke(context.ReadValue<Vector2>());
+        Vector2 inputVector2 = playerActions.Player.Move.ReadValue<Vector2>();
+        return inputVector2;
     }
 }
